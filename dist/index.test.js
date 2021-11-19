@@ -8,14 +8,63 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-describe('Get all customers', () => {
-    it('should fetch all customers', () => __awaiter(void 0, void 0, void 0, function* () {
-        expect('Hello World').toEqual('Hello World');
-        // const result = await request(app)
-        //   .get('/customers');
-        // expect(result.statusCode).toEqual(200);
-        // expect(result.length).toBeGreaterThanOrEqual(1);
+const supertest_1 = __importDefault(require("supertest"));
+const index_1 = __importDefault(require("./index"));
+describe('Bank Accounts Creation', () => {
+    it('should create a new account successfully', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/3')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 400 });
+        expect(result.statusCode).toEqual(200);
+        expect(result.body).toEqual({
+            id: 1,
+            customer: 3,
+            balance: 400,
+            history: [],
+        });
+    }));
+    it('should display an error if no customer id is provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .post('/account')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 400 });
+        expect(result.statusCode).toEqual(404);
+    }));
+    it('should display an error if an incorrect customer id is provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/asdf')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 400 });
+        expect(result.statusCode).toEqual(400);
+        expect(result.error).toBeTruthy();
+        expect(result.text).toEqual('Please input a customer Id after /account/ in the URL');
+    }));
+    it('should display an error if no initial deposit is included', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/3')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(result.statusCode).toEqual(400);
+        expect(result.error).toBeTruthy();
+        expect(result.text).toEqual('Please add an initial deposit in the request body as "deposit"');
+    }));
+    it('should display an error if an initial deposit is less than $1', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/3')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 0 });
+        expect(result.statusCode).toEqual(400);
+        expect(result.error).toBeTruthy();
+        expect(result.text).toEqual('Please add an initial deposit in the request body as "deposit"');
     }));
 });
 //# sourceMappingURL=index.test.js.map
