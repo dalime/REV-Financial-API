@@ -66,5 +66,19 @@ describe('Bank Accounts Creation', () => {
         expect(result.error).toBeTruthy();
         expect(result.text).toEqual('Please add an initial deposit in the request body as "deposit"');
     }));
+    it('should allow multiple bank accounts for 1 customer', () => __awaiter(void 0, void 0, void 0, function* () {
+        const res1 = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/3')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 400 });
+        const res2 = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/3')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 200 });
+        expect(res1.statusCode).toEqual(200);
+        expect(res2.statusCode).toEqual(200);
+    }));
 });
 //# sourceMappingURL=index.test.js.map
