@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import { createBankAccount, createTransfer, } from './data';
+import { createBankAccount, createTransfer, retrieveBalance } from './data';
 
 const app = express();
 const PORT = 8000;
@@ -21,7 +21,7 @@ app.post("/account/:customerId", (req: Request, res: Response) => {
   if (!deposit) {
     res.status(400).send('Please add an initial deposit in the request body as "deposit"');
   }
-  if (!parseInt(customerId, 10)) {
+  if (Number.isNaN(parseInt(customerId, 10))) {
     res.status(400).send('Please input a customer Id after /account/ in the URL');
   }
   const newBankAccount = createBankAccount(parseInt(customerId, 10), deposit);
@@ -32,10 +32,12 @@ app.post("/account/:customerId", (req: Request, res: Response) => {
   }
 });
 
+// Transfers an amount from one bank account to another
+// POST
 app.post("/transfer/:from/:to", (req: Request, res: Response) => {
   const { amount } = req.body;
   const { from, to } = req.params;
-  if (!from || !to || typeof parseInt(from, 10) !== 'number' || typeof parseInt(to, 10) !== 'number') {
+  if (!from || !to || Number.isNaN(parseInt(from, 10)) || Number.isNaN(parseInt(to, 10))) {
     res.status(400).send('Please structure the URL as /transfer/from-bank-account-id/to-bank-account-id');
   }
   if (!amount) {
@@ -50,6 +52,24 @@ app.post("/transfer/:from/:to", (req: Request, res: Response) => {
   } else {
     res.status(400).send('Unknown error: Could not complete transfer');
   }
+});
+
+// Retrieves balances for a given account
+// GET
+app.get('/account/balance/:accountId', (req: Request, res: Response) => {
+  const { accountId } = req.params;
+  if (Number.isNaN(parseInt(accountId, 10))) {
+    // tslint:disable-next-line:no-console
+    console.log('not a number', accountId);
+    res.status(400).send('Please add a valid account id in the URL string - /account/balance/:accountId');
+  }
+  const accountBalance = retrieveBalance(parseInt(accountId, 10));
+  // tslint:disable-next-line:no-console
+  console.log('accountBalance', accountBalance);
+  if (accountBalance === null) {
+    res.status(404).send('Unknown error. Could not retrieve bank account balance');
+  }
+  res.status(200).json(accountBalance);
 });
 
 if (process.env.NODE_ENV !== 'test') {

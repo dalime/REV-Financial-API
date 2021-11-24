@@ -22,7 +22,7 @@ app.post("/account/:customerId", (req, res) => {
     if (!deposit) {
         res.status(400).send('Please add an initial deposit in the request body as "deposit"');
     }
-    if (!parseInt(customerId, 10)) {
+    if (Number.isNaN(parseInt(customerId, 10))) {
         res.status(400).send('Please input a customer Id after /account/ in the URL');
     }
     const newBankAccount = (0, data_1.createBankAccount)(parseInt(customerId, 10), deposit);
@@ -33,10 +33,12 @@ app.post("/account/:customerId", (req, res) => {
         res.status(400).send('Unknown error: Could not create a bank account');
     }
 });
+// Transfers an amount from one bank account to another
+// POST
 app.post("/transfer/:from/:to", (req, res) => {
     const { amount } = req.body;
     const { from, to } = req.params;
-    if (!from || !to || typeof parseInt(from, 10) !== 'number' || typeof parseInt(to, 10) !== 'number') {
+    if (!from || !to || Number.isNaN(parseInt(from, 10)) || Number.isNaN(parseInt(to, 10))) {
         res.status(400).send('Please structure the URL as /transfer/from-bank-account-id/to-bank-account-id');
     }
     if (!amount) {
@@ -52,6 +54,23 @@ app.post("/transfer/:from/:to", (req, res) => {
     else {
         res.status(400).send('Unknown error: Could not complete transfer');
     }
+});
+// Retrieves balances for a given account
+// GET
+app.get('/account/balance/:accountId', (req, res) => {
+    const { accountId } = req.params;
+    if (Number.isNaN(parseInt(accountId, 10))) {
+        // tslint:disable-next-line:no-console
+        console.log('not a number', accountId);
+        res.status(400).send('Please add a valid account id in the URL string - /account/balance/:accountId');
+    }
+    const accountBalance = (0, data_1.retrieveBalance)(parseInt(accountId, 10));
+    // tslint:disable-next-line:no-console
+    console.log('accountBalance', accountBalance);
+    if (accountBalance === null) {
+        res.status(404).send('Unknown error. Could not retrieve bank account balance');
+    }
+    res.status(200).json(accountBalance);
 });
 if (process.env.NODE_ENV !== 'test') {
     app.listen(PORT, () => {

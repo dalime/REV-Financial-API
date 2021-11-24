@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1637753923785" clover="3.2.0">
-  <project timestamp="1637753923785" name="All files">
-    <metrics statements="157" coveredstatements="131" conditionals="57" coveredconditionals="43" methods="25" coveredmethods="12" elements="239" coveredelements="186" complexity="0" loc="157" ncloc="157" packages="4" files="8" classes="8"/>
+<coverage generated="1637756414404" clover="3.2.0">
+  <project timestamp="1637756414404" name="All files">
+    <metrics statements="181" coveredstatements="157" conditionals="71" coveredconditionals="57" methods="27" coveredmethods="16" elements="279" coveredelements="230" complexity="0" loc="181" ncloc="181" packages="4" files="8" classes="8"/>
     <package name="dist">
-      <metrics statements="39" coveredstatements="33" conditionals="27" coveredconditionals="22" methods="5" coveredmethods="3"/>
+      <metrics statements="49" coveredstatements="43" conditionals="31" coveredconditionals="26" methods="6" coveredmethods="4"/>
       <file name="index.js" path="/Users/Danny/Documents/freelance/rev-financial-api/dist/index.js">
-        <metrics statements="39" coveredstatements="33" conditionals="27" coveredconditionals="22" methods="5" coveredmethods="3"/>
+        <metrics statements="49" coveredstatements="43" conditionals="31" coveredconditionals="26" methods="6" coveredmethods="4"/>
         <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
         <line num="3" count="2" type="cond" truecount="3" falsecount="1"/>
         <line num="5" count="1" type="stmt"/>
@@ -18,47 +18,57 @@
         <line num="14" count="1" type="stmt"/>
         <line num="15" count="0" type="stmt"/>
         <line num="19" count="1" type="stmt"/>
-        <line num="20" count="14" type="stmt"/>
-        <line num="21" count="14" type="stmt"/>
-        <line num="22" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="20" count="15" type="stmt"/>
+        <line num="21" count="15" type="stmt"/>
+        <line num="22" count="15" type="cond" truecount="2" falsecount="0"/>
         <line num="23" count="2" type="stmt"/>
-        <line num="25" count="14" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="15" type="cond" truecount="2" falsecount="0"/>
         <line num="26" count="1" type="stmt"/>
-        <line num="28" count="14" type="stmt"/>
-        <line num="29" count="14" type="cond" truecount="1" falsecount="1"/>
-        <line num="30" count="14" type="stmt"/>
+        <line num="28" count="15" type="stmt"/>
+        <line num="29" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="30" count="15" type="stmt"/>
         <line num="33" count="0" type="stmt"/>
-        <line num="36" count="1" type="stmt"/>
-        <line num="37" count="4" type="stmt"/>
-        <line num="38" count="4" type="stmt"/>
-        <line num="39" count="4" type="cond" truecount="5" falsecount="1"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="42" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="45" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="46" count="1" type="stmt"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="49" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="4" type="cond" truecount="5" falsecount="1"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="1" type="stmt"/>
         <line num="50" count="4" type="stmt"/>
-        <line num="53" count="0" type="stmt"/>
-        <line num="56" count="1" type="cond" truecount="1" falsecount="1"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="59" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
+        <line num="51" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="4" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="3" type="stmt"/>
+        <line num="62" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="65" count="1" type="stmt"/>
+        <line num="67" count="3" type="stmt"/>
+        <line num="69" count="3" type="stmt"/>
+        <line num="70" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="73" count="2" type="stmt"/>
+        <line num="75" count="1" type="cond" truecount="1" falsecount="1"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="81" count="1" type="stmt"/>
       </file>
     </package>
     <package name="dist.data">
-      <metrics statements="50" coveredstatements="42" conditionals="16" coveredconditionals="11" methods="10" coveredmethods="5"/>
+      <metrics statements="52" coveredstatements="45" conditionals="20" coveredconditionals="15" methods="10" coveredmethods="6"/>
       <file name="accounts.js" path="/Users/Danny/Documents/freelance/rev-financial-api/dist/data/accounts.js">
-        <metrics statements="29" coveredstatements="27" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="31" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="3"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="20" count="14" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="20" count="15" type="stmt"/>
         <line num="22" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
@@ -75,11 +85,13 @@
         <line num="47" count="4" type="stmt"/>
         <line num="49" count="1" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
-        <line num="67" count="1" type="stmt"/>
+        <line num="56" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="60" count="2" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="72" count="1" type="stmt"/>
       </file>
       <file name="customers.js" path="/Users/Danny/Documents/freelance/rev-financial-api/dist/data/customers.js">
         <metrics statements="11" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
@@ -99,7 +111,7 @@
         <metrics statements="10" coveredstatements="8" conditionals="16" coveredconditionals="11" methods="4" coveredmethods="3"/>
         <line num="2" count="1" type="cond" truecount="4" falsecount="1"/>
         <line num="3" count="6" type="cond" truecount="1" falsecount="1"/>
-        <line num="4" count="18" type="stmt"/>
+        <line num="4" count="22" type="stmt"/>
         <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="7" count="0" type="stmt"/>
         <line num="9" count="1" type="cond" truecount="3" falsecount="0"/>
@@ -110,9 +122,9 @@
       </file>
     </package>
     <package name="src">
-      <metrics statements="36" coveredstatements="30" conditionals="14" coveredconditionals="10" methods="4" coveredmethods="2"/>
+      <metrics statements="46" coveredstatements="40" conditionals="16" coveredconditionals="12" methods="5" coveredmethods="3"/>
       <file name="index.ts" path="/Users/Danny/Documents/freelance/rev-financial-api/src/index.ts">
-        <metrics statements="36" coveredstatements="30" conditionals="14" coveredconditionals="10" methods="4" coveredmethods="2"/>
+        <metrics statements="46" coveredstatements="40" conditionals="16" coveredconditionals="12" methods="5" coveredmethods="3"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -122,45 +134,55 @@
         <line num="12" count="1" type="stmt"/>
         <line num="13" count="0" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="20" count="14" type="stmt"/>
-        <line num="21" count="14" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="20" count="15" type="stmt"/>
+        <line num="21" count="15" type="cond" truecount="1" falsecount="0"/>
         <line num="22" count="2" type="stmt"/>
-        <line num="24" count="14" type="cond" truecount="1" falsecount="0"/>
+        <line num="24" count="15" type="cond" truecount="1" falsecount="0"/>
         <line num="25" count="1" type="stmt"/>
-        <line num="27" count="14" type="stmt"/>
-        <line num="28" count="14" type="cond" truecount="1" falsecount="1"/>
-        <line num="29" count="14" type="stmt"/>
+        <line num="27" count="15" type="stmt"/>
+        <line num="28" count="15" type="cond" truecount="1" falsecount="1"/>
+        <line num="29" count="15" type="stmt"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="36" count="4" type="stmt"/>
-        <line num="37" count="4" type="stmt"/>
-        <line num="38" count="4" type="cond" truecount="4" falsecount="1"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="41" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="42" count="1" type="stmt"/>
-        <line num="44" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="45" count="1" type="stmt"/>
-        <line num="47" count="4" type="stmt"/>
-        <line num="48" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="38" count="4" type="stmt"/>
+        <line num="39" count="4" type="stmt"/>
+        <line num="40" count="4" type="cond" truecount="4" falsecount="1"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="46" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="47" count="1" type="stmt"/>
         <line num="49" count="4" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="55" count="1" type="cond" truecount="0" falsecount="1"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="58" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
+        <line num="50" count="4" type="cond" truecount="1" falsecount="1"/>
+        <line num="51" count="4" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="3" type="stmt"/>
+        <line num="61" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+        <line num="68" count="3" type="stmt"/>
+        <line num="69" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="70" count="2" type="stmt"/>
+        <line num="72" count="2" type="stmt"/>
+        <line num="75" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="82" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.data">
-      <metrics statements="32" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
+      <metrics statements="34" coveredstatements="29" conditionals="4" coveredconditionals="4" methods="6" coveredmethods="3"/>
       <file name="accounts.ts" path="/Users/Danny/Documents/freelance/rev-financial-api/src/data/accounts.ts">
-        <metrics statements="23" coveredstatements="21" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+        <metrics statements="25" coveredstatements="24" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="3"/>
         <line num="3" count="1" type="stmt"/>
         <line num="11" count="1" type="stmt"/>
-        <line num="12" count="14" type="stmt"/>
-        <line num="13" count="14" type="stmt"/>
-        <line num="19" count="14" type="stmt"/>
-        <line num="20" count="14" type="stmt"/>
+        <line num="12" count="15" type="stmt"/>
+        <line num="13" count="15" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+        <line num="20" count="15" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="31" count="4" type="stmt"/>
         <line num="37" count="4" type="stmt"/>
@@ -175,9 +197,11 @@
         <line num="46" count="4" type="stmt"/>
         <line num="47" count="4" type="stmt"/>
         <line num="55" count="1" type="stmt"/>
-        <line num="56" count="0" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="56" count="3" type="cond" truecount="4" falsecount="0"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
+        <line num="68" count="1" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
       </file>
       <file name="customers.ts" path="/Users/Danny/Documents/freelance/rev-financial-api/src/data/customers.ts">
         <metrics statements="7" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>

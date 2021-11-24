@@ -52,8 +52,12 @@ export const createTransfer = (from: number, to: number, amount: number): Transf
  * @param id number
  * @returns number
  */
-export const retrieveBalance = (id: number): number => {
-  return accounts[id].balance;
+export const retrieveBalance = (id: number): number | null => {
+  if (accounts[id] && accounts[id].balance) {
+    return accounts[id].balance;
+  } else {
+    return null;
+  }
 }
 
 /**

@@ -53,7 +53,12 @@ exports.createTransfer = createTransfer;
  * @returns number
  */
 const retrieveBalance = (id) => {
-    return accounts[id].balance;
+    if (accounts[id] && accounts[id].balance) {
+        return accounts[id].balance;
+    }
+    else {
+        return null;
+    }
 };
 exports.retrieveBalance = retrieveBalance;
 /**

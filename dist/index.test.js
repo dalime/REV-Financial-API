@@ -14,7 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const index_1 = __importDefault(require("./index"));
+// To test the creation of Bank Accounts
 describe('Bank Accounts Creation', () => {
+    // Correct case
     it('should create a new account successfully', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield (0, supertest_1.default)(index_1.default)
             .post('/account/3')
@@ -29,6 +31,7 @@ describe('Bank Accounts Creation', () => {
             history: [],
         });
     }));
+    // Edge case: Customer ID is omitted
     it('should display an error if no customer id is provided', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield (0, supertest_1.default)(index_1.default)
             .post('/account')
@@ -37,6 +40,7 @@ describe('Bank Accounts Creation', () => {
             .send({ deposit: 400 });
         expect(result.statusCode).toEqual(404);
     }));
+    // Edge case: Invaid customer ID
     it('should display an error if an incorrect customer id is provided', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield (0, supertest_1.default)(index_1.default)
             .post('/account/asdf')
@@ -47,6 +51,7 @@ describe('Bank Accounts Creation', () => {
         expect(result.error).toBeTruthy();
         expect(result.text).toEqual('Please input a customer Id after /account/ in the URL');
     }));
+    // Edge case: No deposit provided
     it('should display an error if no initial deposit is included', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield (0, supertest_1.default)(index_1.default)
             .post('/account/3')
@@ -56,6 +61,7 @@ describe('Bank Accounts Creation', () => {
         expect(result.error).toBeTruthy();
         expect(result.text).toEqual('Please add an initial deposit in the request body as "deposit"');
     }));
+    // Edge case: Deposit is less than $1.00
     it('should display an error if an initial deposit is less than $1', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield (0, supertest_1.default)(index_1.default)
             .post('/account/3')
@@ -66,6 +72,7 @@ describe('Bank Accounts Creation', () => {
         expect(result.error).toBeTruthy();
         expect(result.text).toEqual('Please add an initial deposit in the request body as "deposit"');
     }));
+    // Requirement: Multiple bank accounts for 1 customer ID
     it('should allow multiple bank accounts for 1 customer', () => __awaiter(void 0, void 0, void 0, function* () {
         const res1 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/3')
@@ -81,7 +88,9 @@ describe('Bank Accounts Creation', () => {
         expect(res2.statusCode).toEqual(200);
     }));
 });
+// To test the transfer of amounts between two accounts
 describe('Transfer between Two Accounts', () => {
+    // Requirement: Transfer should work between two accounts
     it('should successfully transfer an amount', () => __awaiter(void 0, void 0, void 0, function* () {
         const res1 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/1')
@@ -101,6 +110,7 @@ describe('Transfer between Two Accounts', () => {
         expect(result.statusCode).toBe(200);
         expect(result.body.amount).toBe(100);
     }));
+    // Edge case: Invaid URL params
     it('should fail if the URL params are not correct', () => __awaiter(void 0, void 0, void 0, function* () {
         const res2 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/2')
@@ -114,6 +124,7 @@ describe('Transfer between Two Accounts', () => {
             .send({ amount: 100 });
         expect(result.statusCode).toBe(404);
     }));
+    // Edge case: No amount for transfer provided
     it('should fail if an amount is not given', () => __awaiter(void 0, void 0, void 0, function* () {
         const res1 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/1')
@@ -132,6 +143,7 @@ describe('Transfer between Two Accounts', () => {
         expect(result.statusCode).toBe(400);
         expect(result.text).toBe('Please add a valid amount as "amount" field in request body');
     }));
+    // Edge case: Transfer between same account ID
     it('should fail if a transfer is attempted in the same account', () => __awaiter(void 0, void 0, void 0, function* () {
         const res1 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/1')
@@ -146,6 +158,7 @@ describe('Transfer between Two Accounts', () => {
         expect(result.statusCode).toBe(400);
         expect(result.text).toBe('A transfer cannot be completed between the same account');
     }));
+    // Requirement: Transfer between 2 accounts with same owner
     it('should successfully transfer between accounts from the same owner', () => __awaiter(void 0, void 0, void 0, function* () {
         const res1 = yield (0, supertest_1.default)(index_1.default)
             .post('/account/1')
@@ -164,6 +177,43 @@ describe('Transfer between Two Accounts', () => {
             .send({ amount: 300 });
         expect(result.statusCode).toBe(200);
         expect(result.body.amount).toBe(300);
+    }));
+});
+// To test retrieval of bank account balance(s)
+describe('Retrieve bank account balance', () => {
+    // Correct case
+    it('should retrieve a valid bank account balance', () => __awaiter(void 0, void 0, void 0, function* () {
+        const bankAccount = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/1')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 777 });
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/balance/${bankAccount.body.id}`);
+        expect(result.statusCode).toBe(200);
+        expect(result.body).toBe(777);
+    }));
+    // Edge case: Bank account ID not provided
+    it('should error out if an account ID is not provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/balance/`);
+        expect(result.statusCode).toBe(404);
+    }));
+    // Edge case: Invalid account ID type provided
+    it('should error out if a non-integer account ID is provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/balance/asdf`);
+        expect(result.statusCode).toBe(400);
+        expect(result.error).toBeTruthy();
+        expect(result.text).toBe('Please add a valid account id in the URL string - /account/balance/:accountId');
+    }));
+    // Edge case: Bank Account ID not found
+    it('should provide an error if the account is not found', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/balance/999`);
+        expect(result.statusCode).toBe(404);
+        expect(result.error).toBeTruthy();
+        expect(result.text).toBe('Unknown error. Could not retrieve bank account balance');
     }));
 });
 //# sourceMappingURL=index.test.js.map
