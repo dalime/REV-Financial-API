@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.72% </span>
+                <span class="strong">93.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/29</span>
+                <span class='fraction'>27/29</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">51.72% </span>
+                <span class="strong">93.1% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/29</span>
+                <span class='fraction'>27/29</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -135,42 +135,42 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -220,24 +220,24 @@ exports.createBankAccount = createBankAccount;
  * @param amount number
  * @returns Transfer
  */
-const createTransfer = <span class="fstat-no" title="function not covered" >(f</span>rom, to, amount) =&gt; {
-    const newTransfer = <span class="cstat-no" title="statement not covered" >{</span>
+const createTransfer = (from, to, amount) =&gt; {
+    const newTransfer = {
         from,
         to,
         amount,
         date: Date.now(),
     };
-    const fromAccount = <span class="cstat-no" title="statement not covered" >accounts[from];</span>
-    const toAccount = <span class="cstat-no" title="statement not covered" >accounts[to];</span>
-    const newFromBalance = <span class="cstat-no" title="statement not covered" >fromAccount.balance - amount;</span>
-    const newToBalance = <span class="cstat-no" title="statement not covered" >toAccount.balance + amount;</span>
-    const fromAccountHistory = <span class="cstat-no" title="statement not covered" >[...fromAccount.history];</span>
-<span class="cstat-no" title="statement not covered" >    fromAccountHistory.push(newTransfer);</span>
-    const toAccountHistory = <span class="cstat-no" title="statement not covered" >[...toAccount.history];</span>
-<span class="cstat-no" title="statement not covered" >    toAccountHistory.push(newTransfer);</span>
-<span class="cstat-no" title="statement not covered" >    accounts[from] = Object.assign(Object.assign({}, fromAccount), { balance: newFromBalance, history: fromAccountHistory });</span>
-<span class="cstat-no" title="statement not covered" >    accounts[to] = Object.assign(Object.assign({}, toAccount), { balance: newToBalance, history: toAccountHistory });</span>
-<span class="cstat-no" title="statement not covered" >    return newTransfer;</span>
+    const fromAccount = accounts[from];
+    const toAccount = accounts[to];
+    const newFromBalance = fromAccount.balance - amount;
+    const newToBalance = toAccount.balance + amount;
+    const fromAccountHistory = [...fromAccount.history];
+    fromAccountHistory.push(newTransfer);
+    const toAccountHistory = [...toAccount.history];
+    toAccountHistory.push(newTransfer);
+    accounts[from] = Object.assign(Object.assign({}, fromAccount), { balance: newFromBalance, history: fromAccountHistory });
+    accounts[to] = Object.assign(Object.assign({}, toAccount), { balance: newToBalance, history: toAccountHistory });
+    return newTransfer;
 };
 exports.createTransfer = createTransfer;
 /**
@@ -265,7 +265,7 @@ exports.getAccountHistory = getAccountHistory;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Fri Nov 19 2021 20:41:38 GMT+0700 (Indochina Time)
+                at Wed Nov 24 2021 18:38:43 GMT+0700 (Indochina Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

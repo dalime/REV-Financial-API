@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import { createBankAccount, } from './data';
+import { createBankAccount, createTransfer, } from './data';
 
 const app = express();
 const PORT = 8000;
@@ -8,25 +8,47 @@ const PORT = 8000;
 app.use(bodyParser.json());
 
 // Genesis route for API
+// GET
 app.get("/", (req: Request, res: Response) => {
   res.send("REV Financial Institution API");
 });
 
 // Creates a bank account for a given customer with an initial deposit
+// POST
 app.post("/account/:customerId", (req: Request, res: Response) => {
   const { deposit } = req.body;
   const { customerId } = req.params;
   if (!deposit) {
     res.status(400).send('Please add an initial deposit in the request body as "deposit"');
   }
-  if (!customerId || !parseInt(customerId, 8)) {
+  if (!parseInt(customerId, 10)) {
     res.status(400).send('Please input a customer Id after /account/ in the URL');
   }
-  const newBankAccount = createBankAccount(parseInt(customerId, 8), deposit);
+  const newBankAccount = createBankAccount(parseInt(customerId, 10), deposit);
   if (newBankAccount) {
     res.status(200).send(newBankAccount);
   } else {
     res.status(400).send('Unknown error: Could not create a bank account');
+  }
+});
+
+app.post("/transfer/:from/:to", (req: Request, res: Response) => {
+  const { amount } = req.body;
+  const { from, to } = req.params;
+  if (!from || !to || typeof parseInt(from, 10) !== 'number' || typeof parseInt(to, 10) !== 'number') {
+    res.status(400).send('Please structure the URL as /transfer/from-bank-account-id/to-bank-account-id');
+  }
+  if (!amount) {
+    res.status(400).send('Please add a valid amount as "amount" field in request body');
+  }
+  if (from === to) {
+    res.status(400).send('A transfer cannot be completed between the same account');
+  }
+  const newTransfer = createTransfer(parseInt(from, 10), parseInt(to, 10), amount);
+  if (newTransfer) {
+    res.status(200).send(newTransfer);
+  } else {
+    res.status(400).send('Unknown error: Could not complete transfer');
   }
 });
 
