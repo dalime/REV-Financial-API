@@ -50,7 +50,7 @@ export const createTransfer = (from: number, to: number, amount: number): Transf
 /**
  * Gets the balance of an account by id
  * @param id number
- * @returns number
+ * @returns number | null
  */
 export const retrieveBalance = (id: number): number | null => {
   if (accounts[id] && accounts[id].balance) {
@@ -63,8 +63,12 @@ export const retrieveBalance = (id: number): number | null => {
 /**
  * Gets the transfer history of an account by id
  * @param id number
- * @returns Transfer[]
+ * @returns Transfer[] | null
  */
 export const getAccountHistory = (id: number): Transfer[] => {
-  return accounts[id].history;
+  if (accounts[id] && typeof accounts[id].history === 'object') {
+    return accounts[id].history;
+  } else {
+    return null;
+  }
 }

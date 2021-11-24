@@ -216,4 +216,83 @@ describe('Retrieve bank account balance', () => {
         expect(result.text).toBe('Unknown error. Could not retrieve bank account balance');
     }));
 });
+// To test retrieval of bank account transfer history
+describe('Retrieve bank account transfer history', () => {
+    // Correct case
+    it('should retrieve bank account history', () => __awaiter(void 0, void 0, void 0, function* () {
+        const acct1 = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/1')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 800 });
+        const acct2 = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/1')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 200 });
+        const acct3 = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/1')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 100 });
+        yield (0, supertest_1.default)(index_1.default)
+            .post(`/transfer/${acct1.body.id}/${acct2.body.id}`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ amount: 300 });
+        yield (0, supertest_1.default)(index_1.default)
+            .post(`/transfer/${acct2.body.id}/${acct3.body.id}`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ amount: 200 });
+        const acct2History = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/history/${acct2.body.id}`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(acct2History.statusCode).toBe(200);
+        expect(acct2History.body.length).toBe(2);
+    }));
+    // Edge case: No transfer history
+    it('should retrieve empty account history', () => __awaiter(void 0, void 0, void 0, function* () {
+        const acct = yield (0, supertest_1.default)(index_1.default)
+            .post('/account/1')
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json')
+            .send({ deposit: 800 });
+        const acctHistory = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/history/${acct.body.id}`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(acctHistory.statusCode).toBe(200);
+        expect(acctHistory.body.length).toBe(0);
+    }));
+    // Edge case: No account ID provided
+    it('should error out if no account ID provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const acctHistory = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/history`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(acctHistory.statusCode).toBe(404);
+    }));
+    // Edge case: Invalid account ID provided
+    it('should error out if invalid account ID provided', () => __awaiter(void 0, void 0, void 0, function* () {
+        const acctHistory = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/history/asdf`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(acctHistory.statusCode).toBe(400);
+        expect(acctHistory.error).toBeTruthy();
+        expect(acctHistory.text).toBe('Please provide valid accountId in URL - /account/history/:accountId');
+    }));
+    // Edge case: Account not found
+    it('should error out if account is not found', () => __awaiter(void 0, void 0, void 0, function* () {
+        const acctHistory = yield (0, supertest_1.default)(index_1.default)
+            .get(`/account/history/999`)
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        expect(acctHistory.statusCode).toBe(404);
+        expect(acctHistory.error).toBeTruthy();
+        expect(acctHistory.text).toBe('Could not find this bank account');
+    }));
+});
 //# sourceMappingURL=index.test.js.map

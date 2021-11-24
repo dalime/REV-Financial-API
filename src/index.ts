@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
-import { createBankAccount, createTransfer, retrieveBalance } from './data';
+import { createBankAccount, createTransfer, retrieveBalance, getAccountHistory, } from './data';
 
 const app = express();
 const PORT = 8000;
@@ -59,17 +59,26 @@ app.post("/transfer/:from/:to", (req: Request, res: Response) => {
 app.get('/account/balance/:accountId', (req: Request, res: Response) => {
   const { accountId } = req.params;
   if (Number.isNaN(parseInt(accountId, 10))) {
-    // tslint:disable-next-line:no-console
-    console.log('not a number', accountId);
     res.status(400).send('Please add a valid account id in the URL string - /account/balance/:accountId');
   }
   const accountBalance = retrieveBalance(parseInt(accountId, 10));
-  // tslint:disable-next-line:no-console
-  console.log('accountBalance', accountBalance);
   if (accountBalance === null) {
     res.status(404).send('Unknown error. Could not retrieve bank account balance');
   }
   res.status(200).json(accountBalance);
+});
+
+// Retrieve transfer history for a given account
+app.get('/account/history/:accountId', (req: Request, res: Response) => {
+  const { accountId } = req.params;
+  if (Number.isNaN(parseInt(accountId, 10))) {
+    res.status(400).send('Please provide valid accountId in URL - /account/history/:accountId');
+  }
+  const accountHistory = getAccountHistory(parseInt(accountId, 10));
+  if (accountHistory === null) {
+    res.status(404).send('Could not find this bank account');
+  }
+  res.status(200).json(accountHistory);
 });
 
 if (process.env.NODE_ENV !== 'test') {

@@ -50,7 +50,7 @@ exports.createTransfer = createTransfer;
 /**
  * Gets the balance of an account by id
  * @param id number
- * @returns number
+ * @returns number | null
  */
 const retrieveBalance = (id) => {
     if (accounts[id] && accounts[id].balance) {
@@ -64,10 +64,15 @@ exports.retrieveBalance = retrieveBalance;
 /**
  * Gets the transfer history of an account by id
  * @param id number
- * @returns Transfer[]
+ * @returns Transfer[] | null
  */
 const getAccountHistory = (id) => {
-    return accounts[id].history;
+    if (accounts[id] && typeof accounts[id].history === 'object') {
+        return accounts[id].history;
+    }
+    else {
+        return null;
+    }
 };
 exports.getAccountHistory = getAccountHistory;
 //# sourceMappingURL=accounts.js.map
