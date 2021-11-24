@@ -4,18 +4,17 @@ API for a financial institution to create bank accounts, bank transfers, and que
 
 ## Install Dependencies
 
-### `yarn`
-
-### `cd client/ && yarn`
+`yarn`
+`cd client/ && yarn`
 
 ## Start Project
 
-### `yarn start`
+`yarn start`
 
 ## Test Project
 
-### `yarn test`
+`yarn test`
 
 ## Build Project
 
-### `yarn build`
+`yarn build`
